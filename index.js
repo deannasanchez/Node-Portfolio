@@ -68,11 +68,13 @@ function generateHTML(answers) {
   <div class="jumbotron jumbotron-fluid">
   <div class="container" style="background-color: ${answers.colors};">
     <h1 class="display-4">Hi! My name is Dee</h1>
-    <p class="lead">I am from ${answers.location}.</p>
-    <h3>Example heading <span class="badge badge-secondary">Contact Me</span></h3>
+    <img src="${github.use.avatar_url}" alt="github avatar" height="100" width="100">
+    <h3>Example heading <span class="badge badge-secondary">Github Information</span></h3>
     <ul class="list-group">
-      <li class="list-group-item">My GitHub username is ${answers.username}</li>
+      <li class="list-group-item">My GitHub username is ${github.name}</li>
     </ul>
+    <p>Number of Repos: ${github.numRepos}</p>
+    <p>Numer of Stars: ${github.stars}</p>
   </div>
 </div>
 </body>
@@ -84,8 +86,7 @@ promptUser()
         try {
             const githubbers = await gitHubInfo(answers.github);
             console.log("githubbers", githubbers);
-
-            console.log("test", githubbers);
+            // console.log("test", githubbers);
            const html = generateHTML(githubbers);
 
            return writeFileAsync("index.html", html);
